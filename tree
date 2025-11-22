@@ -1,0 +1,29 @@
+CloudDevOpsProject/
+├── app/ # مصدر التطبيق (مُؤخَّرًا تم جلبه من FinalProject repo)
+│ ├── app.py
+│ ├── requirements.txt
+│ └── ...
+├── Dockerfile
+├── kubernetes/
+│ ├── namespace.yaml
+│ ├── deployment.yaml
+│ └── service.yaml
+├── terraform/
+│ ├── provider.tf
+│ ├── backend.tf
+│ ├── main.tf
+│ ├── variables.tf
+│ └── outputs.tf
+├── ansible/
+│ ├── inventory/
+│ │ └── aws_ec2.yaml
+│ ├── playbook.yaml
+│ └── roles/
+│ ├── common/tasks/main.yaml
+│ └── jenkins/tasks/main.yaml
+├── jenkins/
+│ ├── Jenkinsfile
+│ └── vars/sharedLib.groovy
+├── argocd/
+│ └── application.yaml
+└── README.md
