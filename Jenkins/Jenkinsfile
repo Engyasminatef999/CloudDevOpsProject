@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Image') {
+            steps {
+                sh 'docker build -t flask-app:latest .'
+            }
+        }
+
+        stage('Trivy Scan') {
+            steps {
+                sh 'trivy image flask-app:latest'
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                sh 'docker tag flask-app:latest $DOCKER_USER/flask-app:latest'
+                sh 'docker push $DOCKER_USER/flask-app:latest'
+            }
+        }
+
+        stage('Cleanup') {
+            steps {
+                sh 'docker rmi flask-app:latest || true'
+            }
+        }
+
+        stage('Update Manifests') {
+            steps {
+                sh '''
+                sed -i "s|image:.*|image: $DOCKER_USER/flask-app:latest|g" kubernetes/deployment.yaml
+                '''
+            }
+        }
+
+        stage('Push Manifests') {
+            steps {
+                sh '''
+                git add .
+                git commit -m "Update image tag"
+                git push
+                '''
+            }
+        }
+    }
+}
+
