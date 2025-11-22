@@ -49,3 +49,22 @@ Ansible
 جربّي التشغيل على EC2 عبر dynamic inventory.
 
 
+المشروع عبارة عن Pipeline كاملة تشمل:
+
+Python Flask Application
+
+Containerization باستخدام Docker
+
+Orchestration باستخدام Kubernetes (Minikube)
+
+Infrastructure-as-Code باستخدام Terraform (AWS for Jenkins EC2 + Network)
+
+Configuration Management باستخدام Ansible
+
+CI باستخدام Jenkins
+
+CD باستخدام ArgoCD
+
+Monitoring & Logs through Minikube + AWS CloudWatch
+
+GitOps Workflow (Jenkins updates manifests → ArgoCD sync)
